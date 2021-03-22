@@ -47,17 +47,20 @@ int main ()
 //		}
 //		cout << endl;
 //	}
-	int num = n;
+	int num = n, temp = n;
 	while (k >= v[num].size()) {
-		k = k - v[num].size() + 1;
-		num = v[num].back();
-		if (num == 10) {
+		if (temp == v[num].back()) {
+			k = k % (v[num].size() - 1);
+			k = k % v[num].size();
+			break;
+		}
+		if (num == 10 || v[num].back() == 10) {
 			cout << "10" << endl;
 			return 0;
 		}
-		if (k == 0) {
-			k++;
-		}
+		k = k - v[num].size() + 1;
+		num = v[num].back();
+		temp = num;
 	}
 	cout << v[num].at(k) << endl;
 }
